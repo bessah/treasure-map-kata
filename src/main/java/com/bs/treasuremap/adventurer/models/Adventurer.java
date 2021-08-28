@@ -17,4 +17,17 @@ public class Adventurer {
         this.orientation = orientation;
         this.moves = moves;
     }
+
+    public void turnRight() {
+        this.orientation = this.orientation.rightOrientation();
+    }
+
+    public void turnLeft() {
+        this.orientation = this.orientation.leftOrientation();
+    }
+
+    // getters
+    public Orientation getOrientation() {
+        return orientation;
+    }
 }
