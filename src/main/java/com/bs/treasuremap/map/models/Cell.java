@@ -12,4 +12,13 @@ public class Cell {
     public CellType getType() {
         return type;
     }
+
+    // setters
+    public void setType(CellType type) {
+        this.type = type;
+    }
+
+    public void setTreasuresNumber(int treasuresNumber) {
+        this.treasuresNumber = treasuresNumber;
+    }
 }

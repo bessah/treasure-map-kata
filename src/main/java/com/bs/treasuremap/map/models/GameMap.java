@@ -1,5 +1,10 @@
 package com.bs.treasuremap.map.models;
 
+import com.bs.treasuremap.common.models.Position;
+
+import java.util.List;
+import java.util.Map;
+
 public class GameMap {
     private final Cell[][] cells;
 
@@ -16,8 +21,24 @@ public class GameMap {
         }
     }
 
+    public void putMountains(List<Position> positions) {
+        for (Position pos : positions) {
+            getCell(pos).setType(CellType.MOUNTAIN);
+        }
+    }
+
+    public void putTreasures(Map<Position, Integer> treasures) {
+        for (Map.Entry<Position, Integer> treasure : treasures.entrySet()) {
+            getCell(treasure.getKey()).setTreasuresNumber(treasure.getValue());
+        }
+    }
+
     // getters
     public Cell getCell(int i, int j) {
         return cells[i][j];
+    }
+
+    private Cell getCell(Position position) {
+        return this.cells[position.getY()][position.getX()];
     }
 }
