@@ -11,11 +11,13 @@ public class GameMapper {
     private final GameMapMapper gameMapMapper;
     private final MountainMapper mountainMapper;
     private final TreasuresMapper treasuresMapper;
+    private final AdventurerMapper adventurerMapper;
 
-    public GameMapper(GameMapMapper gameMapMapper, MountainMapper mountainMapper, TreasuresMapper treasuresMapper) {
+    public GameMapper(GameMapMapper gameMapMapper, MountainMapper mountainMapper, TreasuresMapper treasuresMapper, AdventurerMapper adventurerMapper) {
         this.gameMapMapper = gameMapMapper;
         this.mountainMapper = mountainMapper;
         this.treasuresMapper = treasuresMapper;
+        this.adventurerMapper = adventurerMapper;
     }
 
     public Game toGame(List<String> gameData) {
@@ -24,13 +26,14 @@ public class GameMapper {
         var gameMap = gameMapMapper.toGameMap(dataByType.get("C").get(0));
         var mountains = mountainMapper.toMountainsPositions(dataByType.get("M"));
         var treasures = treasuresMapper.toTreasures(dataByType.get("T"));
+        var adventurers = adventurerMapper.toAdventurers(dataByType.get("A"));
 
         gameMap.putMountains(mountains);
         gameMap.putTreasures(treasures);
 
         return new Game(
                 gameMap,
-                null
+                adventurers
         );
     }
 
