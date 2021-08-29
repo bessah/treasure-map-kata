@@ -13,4 +13,10 @@ public class TreasuresMapper {
                 line -> Integer.parseInt(line[3])
         ));
     }
+
+    public List<String> toTreasuresLines(Map<Position, Integer> treasures) {
+        return treasures.entrySet().stream()
+                .map(treasure -> String.format("T - %d - %d - %d", treasure.getKey().getX(), treasure.getKey().getY(), treasure.getValue()))
+                .collect(Collectors.toList());
+    }
 }

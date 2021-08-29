@@ -9,4 +9,8 @@ public class GameMapMapper {
                 Integer.parseInt(mapLine[2])
         );
     }
+
+    public String toGameMapLine(GameMap gameMap) {
+        return String.format("C - %d - %d", gameMap.getWidth(), gameMap.getHeight());
+    }
 }

@@ -27,4 +27,9 @@ public class Game {
             }
         }
     }
+
+    // getters
+    public GameMap getMap() {
+        return map;
+    }
 }

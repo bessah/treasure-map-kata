@@ -2,6 +2,7 @@ package com.bs.treasuremap.game.infrastructure.mappers;
 
 import com.bs.treasuremap.game.models.Game;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -39,8 +40,13 @@ public class GameMapper {
     }
 
     public List<String> toGameData(Game game) {
-        // TODO : Convert game instance to game data lines
-        return List.of("#TODO");
+        List<String> gameData = new ArrayList<>();
+
+        gameData.add(gameMapMapper.toGameMapLine(game.getMap()));
+        gameData.addAll(mountainMapper.toMountainsLines(game.getMap().getMountainsPositions()));
+        gameData.addAll(treasuresMapper.toTreasuresLines(game.getMap().getTreasures()));
+
+        return gameData;
     }
 
     private Map<String, List<String[]>> groupByType(List<String> gameData) {

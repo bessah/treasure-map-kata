@@ -3,6 +3,8 @@ package com.bs.treasuremap.map.models;
 import com.bs.treasuremap.adventurer.models.Adventurer;
 import com.bs.treasuremap.common.models.Position;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -66,5 +68,41 @@ public class GameMap {
 
     public Cell getCell(Position position) {
         return this.cells[position.getY()][position.getX()];
+    }
+
+    public int getWidth() {
+        return this.cells[0].length;
+    }
+
+    public int getHeight() {
+        return this.cells.length;
+    }
+
+    public List<Position> getMountainsPositions() {
+        List<Position> mountainsPositions = new ArrayList<>();
+        for (var i = 0; i < cells.length; i++) {
+            for (var j = 0; j < cells[0].length; j++) {
+                var position = new Position(j, i);
+                var cell = getCell(position);
+                if (cell.getType() == CellType.MOUNTAIN) {
+                    mountainsPositions.add(position);
+                }
+            }
+        }
+        return mountainsPositions;
+    }
+
+    public Map<Position, Integer> getTreasures() {
+        Map<Position, Integer> treasures = new HashMap<>();
+        for (var i = 0; i < cells.length; i++) {
+            for (var j = 0; j < cells[0].length; j++) {
+                var position = new Position(j, i);
+                var cell = getCell(position);
+                if (cell.containsTreasures()) {
+                    treasures.put(position, cell.getTreasuresNumber());
+                }
+            }
+        }
+        return treasures;
     }
 }

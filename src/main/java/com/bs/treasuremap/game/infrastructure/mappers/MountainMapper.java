@@ -11,4 +11,10 @@ public class MountainMapper {
                 .map(line -> new Position(Integer.parseInt(line[1]), Integer.parseInt(line[2])))
                 .collect(Collectors.toList());
     }
+
+    public List<String> toMountainsLines(List<Position> mountainsPositions) {
+        return mountainsPositions.stream()
+                .map(pos -> String.format("M - %d - %d", pos.getX(), pos.getY()))
+                .collect(Collectors.toList());
+    }
 }

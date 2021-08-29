@@ -41,6 +41,23 @@ class GameMapperTest {
         assertThat(actual).usingRecursiveComparison().isEqualTo(expected);
     }
 
+    @Test
+    void toGameData_should_return_expected_lines() {
+        // Given
+        Game game = new Game(gameMap(), null);
+        // When
+        List<String> actual = gameMapper.toGameData(game);
+        // Then
+        List<String> expected = List.of(
+                "C - 3 - 4",
+                "M - 1 - 0",
+                "M - 2 - 1",
+                "T - 1 - 3 - 3",
+                "T - 0 - 3 - 2"
+        );
+        assertThat(actual).usingRecursiveComparison().isEqualTo(expected);
+    }
+
     private GameMap gameMap() {
         GameMap map = new GameMap(3, 4);
         map.getCell(0, 1).setType(CellType.MOUNTAIN);
