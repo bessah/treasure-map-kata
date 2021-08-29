@@ -51,7 +51,7 @@ class InFileGameResourceTest {
     void should_save_game_data_on_provided_file() throws Exception {
         // Given
         Game game = Mockito.mock(Game.class);
-        String dist = "src/test/resources/example1.txt.result";
+        String dist = "src/test/resources/fakeExample.txt.result";
         List<String> gameData = List.of(
                 "Data 1",
                 "Data 2"
