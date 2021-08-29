@@ -15,11 +15,26 @@ public class Adventurer {
     private int collectedTreasures;
 
     public Adventurer(String name, Position position, Orientation orientation, Queue<Move> moves) {
+        this(name, position, orientation, moves, 0);
+    }
+
+    public Adventurer(String name, Position position, Orientation orientation, Queue<Move> moves, int collectedTreasures) {
         this.name = name;
         this.position = position;
         this.orientation = orientation;
         this.moves = moves;
-        this.collectedTreasures = 0;
+        this.collectedTreasures = collectedTreasures;
+    }
+
+    public boolean hasUnExecutedMove() {
+        return !moves.isEmpty();
+    }
+
+    public void executeNextMove(GameMap gameMap) {
+        var move = moves.poll();
+        if (move != null) {
+            move.execute(this, gameMap);
+        }
     }
 
     public void moveForward(GameMap gameMap) {

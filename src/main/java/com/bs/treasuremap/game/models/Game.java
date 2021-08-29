@@ -13,4 +13,18 @@ public class Game {
         this.map = map;
         this.adventurers = adventurers;
     }
+
+    public void run() {
+        var end = false;
+        while (!end) {
+            end = true;
+
+            for (Adventurer adventurer : adventurers) {
+                if (adventurer.hasUnExecutedMove()) {
+                    end = false;
+                    adventurer.executeNextMove(map);
+                }
+            }
+        }
+    }
 }
