@@ -1,5 +1,6 @@
 package com.bs.treasuremap.map.models;
 
+import com.bs.treasuremap.adventurer.models.Adventurer;
 import com.bs.treasuremap.common.models.Position;
 
 import java.util.List;
@@ -30,6 +31,12 @@ public class GameMap {
     public void putTreasures(Map<Position, Integer> treasures) {
         for (Map.Entry<Position, Integer> treasure : treasures.entrySet()) {
             getCell(treasure.getKey()).setTreasuresNumber(treasure.getValue());
+        }
+    }
+
+    public void putAdventurers(List<Adventurer> adventurers) {
+        for (Adventurer adventurer : adventurers) {
+            getCell(adventurer.getPosition()).putAdventurer(adventurer);
         }
     }
 

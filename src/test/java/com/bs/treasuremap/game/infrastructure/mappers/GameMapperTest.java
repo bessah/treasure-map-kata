@@ -37,7 +37,7 @@ class GameMapperTest {
         // When
         Game actual = gameMapper.toGame(gameData);
         // Then
-        Game expected = new Game(gameMap(), adventurers());
+        Game expected = new Game(gameMap(), List.of(adventurer()));
         assertThat(actual).usingRecursiveComparison().isEqualTo(expected);
     }
 
@@ -47,10 +47,11 @@ class GameMapperTest {
         map.getCell(1, 2).setType(CellType.MOUNTAIN);
         map.getCell(3, 0).setTreasuresNumber(2);
         map.getCell(3, 1).setTreasuresNumber(3);
+        map.getCell(1, 1).putAdventurer(adventurer());
         return map;
     }
 
-    private List<Adventurer> adventurers() {
+    private Adventurer adventurer() {
         Queue<Move> moves = new LinkedList<>();
         moves.add(Move.MOVE_FORWARD);
         moves.add(Move.MOVE_FORWARD);
@@ -62,8 +63,6 @@ class GameMapperTest {
         moves.add(Move.TURN_LEFT);
         moves.add(Move.MOVE_FORWARD);
 
-        return List.of(
-                new Adventurer("Lara", new Position(1, 1), Orientation.SOUTH, moves)
-        );
+        return new Adventurer("Lara", new Position(1, 1), Orientation.SOUTH, moves);
     }
 }

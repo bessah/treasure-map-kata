@@ -30,6 +30,7 @@ public class GameMapper {
 
         gameMap.putMountains(mountains);
         gameMap.putTreasures(treasures);
+        gameMap.putAdventurers(adventurers);
 
         return new Game(
                 gameMap,
