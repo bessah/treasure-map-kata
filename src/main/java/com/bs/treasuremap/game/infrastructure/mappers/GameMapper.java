@@ -38,6 +38,11 @@ public class GameMapper {
         );
     }
 
+    public List<String> toGameData(Game game) {
+        // TODO : Convert game instance to game data lines
+        return List.of("#TODO");
+    }
+
     private Map<String, List<String[]>> groupByType(List<String> gameData) {
         return gameData.stream()
                 .filter(line -> !line.startsWith("#"))

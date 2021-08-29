@@ -34,3 +34,6 @@ LOG_FILE_IS_UNDEFINED
 #others
 *.srctrl*
 *.factorypath*
+
+# Program results
+*.result

@@ -17,10 +17,13 @@ public class Main {
         if (args.length == 0) {
             throw new IllegalArgumentException(
                     "You should indicate a path to a game resource file when running the programme." +
-                            "Example : com.bs.treasuremap.Main src/test/resources/example1.txt"
+                            "Example : com.bs.treasuremap.Main src/main/resources/example1.txt"
             );
         }
-        var game = gameResource.load(args[0]);
+        String source = args[0];
+        String dist = source + ".result";
+        var game = gameResource.load(source);
         game.run();
+        gameResource.save(game, dist);
     }
 }
