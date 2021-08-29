@@ -45,6 +45,7 @@ public class GameMapper {
         gameData.add(gameMapMapper.toGameMapLine(game.getMap()));
         gameData.addAll(mountainMapper.toMountainsLines(game.getMap().getMountainsPositions()));
         gameData.addAll(treasuresMapper.toTreasuresLines(game.getMap().getTreasures()));
+        gameData.addAll(adventurerMapper.toAdventurersLines(game.getAdventurers()));
 
         return gameData;
     }

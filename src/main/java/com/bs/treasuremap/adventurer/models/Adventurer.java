@@ -59,6 +59,10 @@ public class Adventurer {
     }
 
     // getters
+    public String getName() {
+        return name;
+    }
+
     public Position getPosition() {
         return position;
     }

@@ -32,4 +32,8 @@ public class Game {
     public GameMap getMap() {
         return map;
     }
+
+    public List<Adventurer> getAdventurers() {
+        return adventurers;
+    }
 }

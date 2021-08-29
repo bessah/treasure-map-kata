@@ -17,6 +17,23 @@ public class AdventurerMapper {
                 .collect(Collectors.toList());
     }
 
+    public List<String> toAdventurersLines(List<Adventurer> adventurers) {
+        return adventurers.stream()
+                .map(this::toAdventurerLine)
+                .collect(Collectors.toList());
+    }
+
+    public String toAdventurerLine(Adventurer adventurer) {
+        return String.format(
+                "A - %s - %d - %d - %s - %d",
+                adventurer.getName(),
+                adventurer.getPosition().getX(),
+                adventurer.getPosition().getY(),
+                toOrientationCode(adventurer.getOrientation()),
+                adventurer.getCollectedTreasures()
+        );
+    }
+
     private Adventurer toAdventurer(String[] adventurerLine) {
         return new Adventurer(
                 adventurerLine[1],
@@ -38,6 +55,21 @@ public class AdventurerMapper {
                 return Orientation.WEST;
             default:
                 throw new IllegalArgumentException(String.format("Provided orientation code '%s' is not recognized", orientationCode));
+        }
+    }
+
+    private String toOrientationCode(Orientation orientation) {
+        switch (orientation) {
+            case NORTH:
+                return "N";
+            case EAST:
+                return "E";
+            case SOUTH:
+                return "S";
+            case WEST:
+                return "O";
+            default:
+                throw new IllegalArgumentException(String.format("Provided orientation '%s' is not handled", orientation.name()));
         }
     }
 

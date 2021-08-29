@@ -44,7 +44,7 @@ class GameMapperTest {
     @Test
     void toGameData_should_return_expected_lines() {
         // Given
-        Game game = new Game(gameMap(), null);
+        Game game = new Game(gameMap(), List.of(adventurer()));
         // When
         List<String> actual = gameMapper.toGameData(game);
         // Then
@@ -53,7 +53,8 @@ class GameMapperTest {
                 "M - 1 - 0",
                 "M - 2 - 1",
                 "T - 1 - 3 - 3",
-                "T - 0 - 3 - 2"
+                "T - 0 - 3 - 2",
+                "A - Lara - 1 - 1 - S - 0"
         );
         assertThat(actual).usingRecursiveComparison().isEqualTo(expected);
     }
