@@ -40,12 +40,31 @@ public class GameMap {
         }
     }
 
+    public boolean has(Position position) {
+        if (position.getX() < 0 || position.getX() >= this.cells[0].length) {
+            return false;
+        }
+        if (position.getY() < 0 || position.getY() >= this.cells.length) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean isFree(Position position) {
+        return getCell(position).isFree();
+    }
+
+    public void moveAdventurer(Adventurer adventurer, Position from, Position to) {
+        getCell(from).removeAdventurer(); // remove adventurer from the old position
+        getCell(to).putAdventurer(adventurer); // put adventurer in the new position
+    }
+
     // getters
     public Cell getCell(int i, int j) {
         return cells[i][j];
     }
 
-    private Cell getCell(Position position) {
+    public Cell getCell(Position position) {
         return this.cells[position.getY()][position.getX()];
     }
 }

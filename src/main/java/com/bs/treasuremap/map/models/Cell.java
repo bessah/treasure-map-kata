@@ -26,6 +26,14 @@ public class Cell {
         }
     }
 
+    public boolean isFree() {
+        return type == CellType.PLAIN && adventurer == null;
+    }
+
+    public void removeAdventurer() {
+        this.adventurer = null;
+    }
+
     // getters
     public CellType getType() {
         return type;
@@ -33,6 +41,10 @@ public class Cell {
 
     public int getTreasuresNumber() {
         return treasuresNumber;
+    }
+
+    public Adventurer getAdventurer() {
+        return adventurer;
     }
 
     // setters

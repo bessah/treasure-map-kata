@@ -3,6 +3,7 @@ package com.bs.treasuremap.adventurer.models;
 import com.bs.treasuremap.common.models.Orientation;
 import com.bs.treasuremap.common.models.Position;
 import com.bs.treasuremap.map.models.Cell;
+import com.bs.treasuremap.map.models.GameMap;
 
 import java.util.Queue;
 
@@ -19,6 +20,14 @@ public class Adventurer {
         this.orientation = orientation;
         this.moves = moves;
         this.collectedTreasures = 0;
+    }
+
+    public void moveForward(GameMap gameMap) {
+        var toPosition = this.orientation.forwardPosition(this.position);
+        if (gameMap.has(toPosition) && gameMap.isFree(toPosition)) {
+            gameMap.moveAdventurer(this, this.position, toPosition);
+            this.position = toPosition;
+        }
     }
 
     public void turnRight() {
